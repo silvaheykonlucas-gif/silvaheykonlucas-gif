@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel FF - Configuração</title>
+    <style>
+        /* Estilo CSS para o visual Dark/Gamer */
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .painel {
+            background: #1a1a1a;
+            width: 350px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5); /* Sombra roxa neon */
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #8a2be2; /* Roxo */
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .opcao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #252525;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .opcao:hover {
+            background: #2f2f2f;
+        }
+
+        /* Estilização do Checkbox (Switch) */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #444;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #8a2be2; /* Ativado fica Roxo */
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Botão de Ativar */
+        .btn-ativar {
+            margin-top: 20px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-ativar:active {
+            transform: scale(0.98);
+        }
+
+        /* Mensagem de Sucesso */
+        #mensagem {
+            margin-top: 20px;
+            padding: 10px;
+            color: #00ff00; /* Verde Neon */
+            font-weight: bold;
+            display: none; /* Começa escondido */
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="painel">
+        <h1>deusa psica†</h1>
+
+        <div class="opcao">
+            <span>Assistente de Mira</span>
+            <label class="switch">
+                <input type="checkbox" id="aim-assist">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="opcao">
+            <span>HS Cabeça</span>
+            <label class="switch">
+                <input type="checkbox" id="hs-head">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="opcao">
+            <span>HS Pescoço</span>
+            <label class="switch">
+                <input type="checkbox" id="hs-neck">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="opcao">
+            <span>HS Peito</span>
+            <label class="switch">
+                <input type="checkbox" id="hs-chest">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <button class="btn-ativar" onclick="ativarScript()">INJETAR CÓDIGO</button>
+
+        <div id="mensagem"></div>
+    </div>
+
+    <script>
+        function ativarScript() {
+            // Pega os elementos checkbox
+            const aim = document.getElementById('aim-assist').checked;
+            const head = document.getElementById('hs-head').checked;
+            const neck = document.getElementById('hs-neck').checked;
+            const chest = document.getElementById('hs-chest').checked;
+            const msgDiv = document.getElementById('mensagem');
+
+            // Verifica se pelo menos um foi selecionado
+            if (aim || head || neck || chest) {
+                // Simula um tempo de carregamento
+                msgDiv.style.display = "block";
+                msgDiv.style.color = "#ffff00"; // Amarelo
+                msgDiv.innerText = "Carregando scripts...";
+                msgDiv.style.borderColor = "#ffff00";
+
+                setTimeout(() => {
+                    msgDiv.style.color = "#00ff00"; // Verde
+                    msgDiv.style.borderColor = "#00ff00";
+                    msgDiv.style.backgroundColor = "rgba(0, 255, 0, 0.1)";
+                    msgDiv.innerHTML = "✅ ATIVADO COM SUCESSO!";
+                }, 2000); // Espera 2 segundos para mostrar a mensagem
+            } else {
+                msgDiv.style.display = "block";
+                msgDiv.style.color = "#ff3333";
+                msgDiv.style.borderColor = "#ff3333";
+                msgDiv.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+                msgDiv.innerText = "⚠️ Selecione pelo menos uma função!";
+            }
+        }
+    </script>
+
+</body>
+</html>
